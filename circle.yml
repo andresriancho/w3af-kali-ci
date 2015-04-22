@@ -22,7 +22,7 @@ dependencies:
     - git clone https://github.com/agx/git-buildpackage.git
     - cd git-buildpackage && sudo python setup.py install
 
-    - pip install requests semver
+    - pip install requests semver python-dateutil
 
     # Get the w3af-kali repo
     - utils/fetch-w3af-kali.sh

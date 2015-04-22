@@ -14,4 +14,7 @@ These are some limitations that need to be fixed at some point:
  * Successful [w3af](https://github.com/andresriancho/w3af) builds will trigger a new
    build of this repository; but the build steps will get the latest release tag from
    the repository w3af instead of the latest version. In other words, if you want to
-   really test a w3af-kali build you need to tag the version in the w3af repository. 
+   really test a w3af-kali build you need to tag the version in the w3af repository.
+   
+ * A change in [w3af-kali](https://github.com/andresriancho/w3af-kali) doesn't
+   trigger a `w3af-kali-ci` build.

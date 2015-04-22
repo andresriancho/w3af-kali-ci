@@ -18,7 +18,7 @@ dependencies:
 
   pre:
     - sudo apt-get update
-    - sudo apt-get install -y devscripts debhelper debootstrap
+    - sudo apt-get install -y devscripts debhelper debootstrap python-dateutil python-pkg-resources python-setuptools sgml2x pristine-tar unzip
     - git clone https://github.com/agx/git-buildpackage.git
     - cd git-buildpackage && sudo python setup.py install
 

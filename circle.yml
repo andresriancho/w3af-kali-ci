@@ -29,6 +29,7 @@ dependencies:
 
     # Get the latest docker image for the tests
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
+    - sudo docker pull andresriancho/w3af-kali
     - cd w3af-kali/docker && docker build -t andresriancho/w3af-kali .
     - mkdir -p ~/docker; docker save andresriancho/w3af-kali > ~/docker/image.tar
 

@@ -10,7 +10,7 @@ VERSION=`python get-latest-w3af-tag.py`
 
 # This downloads the updated tagged version from your git repo
 uscan --force-download --verbose
-utils/git-import-orig ../${VERSION}.tar.gz --upstream-version=${VERSION}
+~/w3af-kali-ci/utils/git-import-orig ../${VERSION}.tar.gz --upstream-version=${VERSION}
 
 # Add the new release changelog entry, pointing to the right version
 # so dpkg-buildpackage can find the tgz
@@ -36,6 +36,4 @@ dpkg-checkbuilddeps
 # --git-ignore-new ignores any changes to the local directory
 #
 # -b builds binary only package
-utils/git-buildpackage --git-ignore-new -b -uc -us
-
-
+~/w3af-kali-ci/utils/git-buildpackage --git-ignore-new -b -uc -us

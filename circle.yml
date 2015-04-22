@@ -10,8 +10,11 @@ machine:
 
 dependencies:
   cache_directories:
-    # These are inside the w3af-kali-ci directory
+    # These are inside ~/w3af-kali-ci directory
     - "w3af-kali"
+
+    # Docker cache
+    - "~/docker"
 
   pre:
     - sudo apt-get update
@@ -22,9 +25,15 @@ dependencies:
     # Get the w3af-kali repo
     - utils/fetch-w3af-kali.sh
 
+    # Get the latest docker image for the tests
+    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
+    - cd w3af-kali/docker && docker build -t andresriancho/w3af-kali .
+    - mkdir -p ~/docker; docker save andresriancho/w3af-kali > ~/docker/image.tar
+
   post:
     - pip --version
     - pip freeze
+    - docker info
 
 
 test:

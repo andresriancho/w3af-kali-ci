@@ -1,0 +1,34 @@
+#
+#   This file is used to configure the continuous integration for w3af-kali
+#
+machine:
+  services:
+    - docker
+
+  python:
+    version: 2.7.3
+
+dependencies:
+  cache_directories:
+    # These are inside the w3af-kali-ci directory
+    - "w3af-kali"
+
+  pre:
+    - sudo apt-get update
+    - sudo apt-get install -y devscripts git-buildpackage debhelper debootstrap
+
+    - pip install requests semver
+
+    # Get the w3af-kali repo
+    - utils/fetch-w3af-kali.sh
+
+  post:
+    - pip --version
+    - pip freeze
+
+
+test:
+  override:
+    - utils/build-w3af-kali.sh
+    - utils/docker-test-deb.sh
+

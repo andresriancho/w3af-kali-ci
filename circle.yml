@@ -15,6 +15,7 @@ dependencies:
 
   pre:
     - sudo apt-get update
+    - sudo apt-get upgrade git
     - sudo apt-get install -y devscripts git-buildpackage debhelper debootstrap
 
     - pip install requests semver

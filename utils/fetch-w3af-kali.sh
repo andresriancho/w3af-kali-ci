@@ -3,6 +3,9 @@
 set -x
 set -e
 
+git config --global user.email "andres.riancho@gmail.com"
+git config --global user.name "Andres Riancho"
+
 #
 # Clone if required, cache will store this directory between builds
 #

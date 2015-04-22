@@ -10,6 +10,8 @@ VERSION=`python get-latest-w3af-tag.py`
 
 # This downloads the updated tagged version from your git repo
 uscan --force-download --verbose
+
+git -d upstream/${VERSION}
 ~/w3af-kali-ci/utils/git-import-orig ../${VERSION}.tar.gz --upstream-version=${VERSION}
 
 # Add the new release changelog entry, pointing to the right version

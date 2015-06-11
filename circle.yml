@@ -23,6 +23,8 @@ dependencies:
     - cd git-buildpackage && sudo python setup.py install
 
     - pip install requests semver python-dateutil
+    # Warning: A true SSLContext object is not available
+    - pip install requests[security]
 
     # Get the w3af-kali repo
     - utils/fetch-w3af-kali.sh

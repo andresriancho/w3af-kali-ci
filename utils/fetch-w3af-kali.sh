@@ -11,9 +11,14 @@ git config --global user.name "Andres Riancho"
 #
 if [ ! -d "w3af-kali" ]; then
     git clone git@github.com:andresriancho/w3af-kali.git
+
+    cd w3af-kali
     git checkout --track origin/upstream
     git checkout --track origin/pristine-tar
+    
     git remote add kali-upstream git://git.kali.org/packages/w3af.git
+
+    cd ..
 fi
 
 cd w3af-kali

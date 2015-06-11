@@ -36,3 +36,7 @@ git fetch -v kali-upstream
 
 git checkout master
 git merge kali-upstream/master
+
+# For debugging
+git branch
+git remote

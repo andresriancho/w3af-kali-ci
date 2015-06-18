@@ -18,7 +18,10 @@ dependencies:
 
   pre:
     - sudo apt-get update
-    - sudo apt-get install -y devscripts debhelper debootstrap python-dateutil python-pkg-resources python-setuptools sgml2x pristine-tar unzip
+    - sudo apt-get install -y devscripts debhelper debootstrap python-dateutil python-pkg-resources
+    - sudo apt-get install -y python-setuptools sgml2x pristine-tar unzip python-all
+
+    # Special build dependency installation
     - git clone https://github.com/agx/git-buildpackage.git
     - cd git-buildpackage && sudo python setup.py install
 
@@ -29,12 +32,6 @@ dependencies:
     # Get the w3af-kali repo
     - utils/fetch-w3af-kali.sh
 
-    # Get the latest docker image for the tests
-    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
-    - sudo docker pull andresriancho/w3af-kali
-    - cd w3af-kali/docker && docker build -t andresriancho/w3af-kali .
-    - mkdir -p ~/docker; docker save andresriancho/w3af-kali > ~/docker/image.tar
-
   post:
     - pip --version
     - pip freeze
@@ -44,5 +41,12 @@ dependencies:
 test:
   override:
     - utils/build-w3af-kali.sh
+
+    # Get the latest docker image so we can test the w3af.deb
+    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
+    - sudo docker pull andresriancho/w3af-kali
+    - cd w3af-kali/docker && docker build -t andresriancho/w3af-kali .
+    - mkdir -p ~/docker; docker save andresriancho/w3af-kali > ~/docker/image.tar
+
     - utils/docker-test-deb.sh
 

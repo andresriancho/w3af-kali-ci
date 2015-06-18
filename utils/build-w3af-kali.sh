@@ -25,7 +25,9 @@ w3af (${VERSION}-0kali1) kali; urgency=medium
 
 EOF
 
-(cat debian/changelog.entry; cat debian/changelog) > debian/changelog
+cat debian/changelog.entry > debian/changelog.temp
+cat debian/changelog >> debian/changelog.temp
+mv  debian/changelog.temp debian/changelog
 rm -rf debian/changelog.entry
 
 git commit debian/changelog -m ${VERSION}
